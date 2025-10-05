@@ -1,5 +1,9 @@
+import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Creacion de objetos
         Automovil auto1 = new Automovil();
         Automovil auto2 = new Automovil(3.2, "i320", "BMW");
@@ -63,8 +67,49 @@ public class Main {
         System.out.println("===================================================");
         System.out.printf("\n");
 
+        //Ejercicio 2
+        // Crear los objetos y pedir al usuario los valores por terminal
+        Estudiantes estudiante1 = new Estudiantes();
+        BufferedReader br = new BufferedReader(new java.io.InputStreamReader(System.in));
 
+        /*System.out.println("Ingrese el nombre del estudiante 1: ");
+        estudiante1.nombre = br.readLine();
 
+        System.out.println("Ingrese la edad del estudiante 1: ");
+        estudiante1.edad = Integer.parseInt(br.readLine());
+        // Cuento se piden valores numericos, se debe convertir
+        // con Integer.parseInt de int a String
+        // Si es double, se usa Double.parseDouble
 
+        System.out.println("Ingrese la carrera del estudiante 1: ");
+        estudiante1.carrera = br.readLine();
+
+        // Desplegar los valores
+        System.out.println("===================================================");
+        System.out.printf("Estudiante 1 \n");
+        System.out.println("Nombre: " + estudiante1.nombre);
+        System.out.println("Edad: " + estudiante1.edad);
+        System.out.println("Carrera: " + estudiante1.carrera);
+        System.out.println("===================================================");*/
+
+        // Pedir datos mediante cuadro de dialogo
+        Estudiantes estudiante2 = new Estudiantes();
+        estudiante2.nombre = JOptionPane.showInputDialog("Ingrese el nombre del estudiante 2: ");
+        estudiante2.edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad del estudiante 2: "));
+        // Cuento se piden valores numericos, se debe convertir
+        // con Integer.parseInt de int a String
+        // Si es double, se usa Double.parseDouble
+
+        estudiante2.carrera = JOptionPane.showInputDialog("Ingrese la carrera del estudiante 2: ");
+
+        // Desplegar los valores
+        JOptionPane.showMessageDialog(null, "Nombre: " + estudiante2.nombre +
+                "\nEdad: " + estudiante2.edad +
+                "\nCarrera: " + estudiante2.carrera);
+        // El null es para que no tenga ventana padre y sea independiente
+        // ademas el "\n" es para salto de linea y se ve de manera ordenada
+
+        // No se puede mezclar ambos tipos de entrada de datos
+        // por ende la primera salida esta comentada
     }
 }
