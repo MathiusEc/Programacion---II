@@ -2,9 +2,11 @@ import javax.swing.*;
 
 public class Proveedor {
     /** Declaracion de Atributos*/
-    String RUC;
-    String razonSocial;
-    String direccion;
+    // Deben ser privados y se deben acceder por medio de los métodos
+    private String RUC;
+    private String razonSocial;
+    private String direccion;
+    private float  precioProdu;
 
     /** Decalrcion de Constructores y Destructores*/
     // Los constructores son metodos especiales que se ejecutan al momento de crear un objeto
@@ -68,6 +70,11 @@ public class Proveedor {
 
     public void mostrarMensaje(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje);
+    }
+
+    public void detalle2(){
+        System.out.println("RUC: " + this.getRUC());
+        // Encapsulamiento con el principio de encapsulamiento
     }
 
     // Parametros por valor es cuando se pasa una copia del valor

@@ -10,7 +10,7 @@ public class Main {
         /** Lectura de Datos */
         String ruc, razon, dir, deta;
         System.out.println("Proveedor RUC: ");
-        ruc = sc.nextLine();
+        vendor1.setRUC(sc.nextLine());
         System.out.println();
 
         System.out.println("Proveedor Razon Social: ");
@@ -21,7 +21,7 @@ public class Main {
         dir = sc.nextLine();
         System.out.println();
 
-        deta = vendor1.detallesProve(ruc,razon,dir);
+        deta = vendor1.detallesProve(vendor1.getRUC(),razon,dir);
         //Se ingresa al metodo con las variables que contienen los datos
 
         //Crear metodo que entre como parametro "deta" y lo imprima en una ventana
@@ -31,6 +31,6 @@ public class Main {
         System.out.println("Info Proveedor\n"+deta);
         // Imrimir esto en una ventana, pero traerlo e las clases a ttraves de un metodo
 
-
+        vendor1.detalle2();
     }
 }
