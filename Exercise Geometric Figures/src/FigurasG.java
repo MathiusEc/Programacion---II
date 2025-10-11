@@ -70,45 +70,48 @@ public class FigurasG {
     }
 
     /** Meotodos propios del Programador */
-    public void cuadradoP(float lado1) {
+    // No se usan getters, por el momento ya que no se necesita acceder a los atributos desde fuera de la clase
+    // solo se usan setters para asignar valores a los atributos y se usan los atributos directamente en los metodos
+    public void cuadradoP() {
+        // No tiene argumentos porque usa los atributos de la clase
         float p;
         p = lado1*4;
         JOptionPane.showMessageDialog(null, "El perimetro del cuadrado es: " + p);
     }
-    public void cuadradoA(float lado1) {
+    public void cuadradoA() {
         float a;
         a = lado1*lado1;
         JOptionPane.showMessageDialog(null, "El área del cuadrado es: " + a);
     }
 
-    public void trianguloP(float lado1, float lado2, float lado3) {
+    public void trianguloP() {
         float p;
         p = lado1 + lado2 + lado3;
         JOptionPane.showMessageDialog(null, "El perimetro del triangulo es: " + p);
     }
-    public void trianguloA(float base, float altura) {
+    public void trianguloA() {
         float a;
         a = (base*altura)/2;
         JOptionPane.showMessageDialog(null, "El área del triangulo es: " + a);
     }
 
-    public void romboP(float lado1) {
+    public void romboP() {
         float p;
         p = lado1*4;
         JOptionPane.showMessageDialog(null, "El perimetro del rombo es: " + p);
     }
-    public void romboA(float D, float d) {
+    public void romboA() {
         float a;
         a = (D*d)/2;
         JOptionPane.showMessageDialog(null, "El área del rombo es: " + a);
     }
 
-    public void circuloP(float radio) {
+    public void circuloP() {
         float p;
         p = (float) (2*Math.PI*radio);
         JOptionPane.showMessageDialog(null, "El perimetro del circulo es: " + p);
     }
-    public void circuloA(float radio) {
+    public void circuloA() {
         float a;
         a = (float) (Math.PI*(radio*radio));
         // Math.PI es una constante que representa el valor de pi

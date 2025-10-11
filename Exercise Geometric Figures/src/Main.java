@@ -32,8 +32,9 @@ public class Main {
                     float l;
                     System.out.println("============Cuadrado============");
                     l = FigurasG.validarPositivo(sc, "Ingrese el lado: ");
-                    cuadrado.cuadradoA(l);
-                    cuadrado.cuadradoP(l);
+                    cuadrado.setLado1(l);
+                    cuadrado.cuadradoA();
+                    cuadrado.cuadradoP();
                     break;
 
                 case 2:
@@ -52,8 +53,14 @@ public class Main {
                         if (!val) {
                             System.out.println("Por favor, ingrese nuevamente los datos.");
                         } else {
-                            triangulo.trianguloA(b, h);
-                            triangulo.trianguloP(l1, l2, l3);
+                            triangulo.setBase(b);
+                            triangulo.setAltura(h);
+                            triangulo.setLado1(l1);
+                            triangulo.setLado2(l2);
+                            triangulo.setLado3(l3);
+                            triangulo.trianguloA();
+                            triangulo.trianguloP();
+                            // Se asignan los valores a los atributos del objeto triangulo
                             // Se llaman a los metodos del objeto triangulo
                         }
                     } while (!val);
@@ -71,8 +78,11 @@ public class Main {
                             System.out.println("Por favor, ingrese nuevamente los datos.");
                         } else {
                             lado = FigurasG.validarPositivo(sc, "Ingrese el lado: ");
-                            rombo.romboA(D, d);
-                            rombo.romboP(lado);
+                            rombo.setD(D);
+                            rombo.setD(d);
+                            rombo.setLado1(lado);
+                            rombo.romboA();
+                            rombo.romboP();
                         }
                     } while (!val);
                     break;
@@ -80,8 +90,9 @@ public class Main {
                     float r;
                     System.out.println("============Círculo============");
                     r = FigurasG.validarPositivo(sc, "Ingrese el radio: ");
-                    círculo.circuloA(r);
-                    círculo.circuloP(r);
+                    círculo.setRadio(r);
+                    círculo.circuloA();
+                    círculo.circuloP();
                     break;
                 case 5:
                     JOptionPane.showMessageDialog(null, "Gracias por usar el programa");
