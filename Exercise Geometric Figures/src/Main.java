@@ -30,95 +30,62 @@ public class Main {
             switch (opc) {
                 case 1:
                     float l;
-                    do {
-                        System.out.println("============Cuadrado============");
-                        System.out.println("Ingrese el lado: ");
-                        l = Float.parseFloat(sc.nextLine());
-                        if (l <= 0) {
-                            System.out.println("El lado no puede ser negativo o cero");
-                        } else {
-                            cuadrado.cuadradoA(l);
-                            cuadrado.cuadradoP(l);
-                        }
-                    } while (l <= 0);
+                    System.out.println("============Cuadrado============");
+                    l = FigurasG.validarPositivo(sc, "Ingrese el lado: ");
+                    cuadrado.cuadradoA(l);
+                    cuadrado.cuadradoP(l);
                     break;
 
                 case 2:
                     float b, h, l1, l2, l3;
                     do {
                         System.out.println("============Triangulo============");
-                        System.out.println("Ingrese la base (Lado 1): ");
-                        b = Float.parseFloat(sc.nextLine());
+                        b = FigurasG.validarPositivo(sc, "Ingrese la base (Lado 1): ");
+                        // Se llama al metodo validarPositivo de la clase FigurasG
+
                         l1 = b; // Asigno el valor de la base a l1 para usarlo en el perimetro
-
-                        System.out.println("Ingrese la altura: ");
-                        h = Float.parseFloat(sc.nextLine());
-
-                        System.out.println("Ingrese el lado 2: ");
-                        l2 = Float.parseFloat(sc.nextLine());
-
-                        System.out.println("Ingrese el lado 3: ");
-                        l3 = Float.parseFloat(sc.nextLine());
+                        h = FigurasG.validarPositivo(sc, "Ingrese la altura: ");
+                        l2 = FigurasG.validarPositivo(sc, "Ingrese el lado 2: ");
+                        l3 = FigurasG.validarPositivo(sc, "Ingrese el lado 3: ");
 
                         val = FigurasG.validarTriangulo(l1, l2, l3);
-                        if (val == false) {
-                            l1 = 0; l2 = 0; l3 = 0; // Reinicio los valores para que el ciclo se repita
-                        }else {
-                            if (b <= 0 || h <= 0 || l1 <= 0 || l2 <= 0 || l3 <= 0) {
-                                System.out.println("Los valores no pueden ser negativos o cero");
-                            } else {
-                                triangulo.trianguloA(b, h);
-                                triangulo.trianguloP(l1, l2, l3);
-                            }
+                        if (!val) {
+                            System.out.println("Por favor, ingrese nuevamente los datos.");
+                        } else {
+                            triangulo.trianguloA(b, h);
+                            triangulo.trianguloP(l1, l2, l3);
+                            // Se llaman a los metodos del objeto triangulo
                         }
-                    } while (b <= 0 || h <= 0 || l1 <= 0 || l2 <= 0 || l3 <= 0);
+                    } while (!val);
                     break;
 
                 case 3:
-                    float D, d, lado = 0;
+                    float D, d, lado = 0; // Se inicializa lado en 0 para evitar error de variable no inicializada
                     do {
                         System.out.println("============Rombo============");
-                        System.out.println("Ingrese la diagonal mayor: ");
-                        D = Float.parseFloat(sc.nextLine());
-
-                        System.out.println("Ingrese la diagonal menor: ");
-                        d = Float.parseFloat(sc.nextLine());
+                        D = FigurasG.validarPositivo(sc, "Ingrese la diagonal mayor: ");
+                        d = FigurasG.validarPositivo(sc, "Ingrese la diagonal menor: ");
 
                         val = FigurasG.validarRombo(D, d);
-                        if (val == false) {
-                            D = 0; d = 0; // Reinicio los valores para que el ciclo se repita
-                        }else{
-                            System.out.println("Ingrese el lado: ");
-                            lado = Float.parseFloat(sc.nextLine());
-
-                            if (D <= 0 || d <= 0 || lado <= 0) {
-                                System.out.println("Los valores no pueden ser negativos o cero");
-                            } else {
-                                rombo.romboA(D, d);
-                                rombo.romboP(lado);
-                            }
+                        if (!val) {
+                            System.out.println("Por favor, ingrese nuevamente los datos.");
+                        } else {
+                            lado = FigurasG.validarPositivo(sc, "Ingrese el lado: ");
+                            rombo.romboA(D, d);
+                            rombo.romboP(lado);
                         }
-                    } while (D <= 0 || d <= 0 || lado <= 0);
+                    } while (!val);
                     break;
                 case 4:
                     float r;
-                    do {
-                        System.out.println("============Círculo============");
-                        System.out.println("Ingrese el radio: ");
-                        r = Float.parseFloat(sc.nextLine());
-
-                        if (r <= 0) {
-                            System.out.println("El radio no puede ser negativo o cero");
-                        } else {
-                            círculo.circuloA(r);
-                            círculo.circuloP(r);
-                        }
-                    } while (r <= 0);
+                    System.out.println("============Círculo============");
+                    r = FigurasG.validarPositivo(sc, "Ingrese el radio: ");
+                    círculo.circuloA(r);
+                    círculo.circuloP(r);
                     break;
                 case 5:
                     JOptionPane.showMessageDialog(null, "Gracias por usar el programa");
                     break;
-
             }
         } while (opc != 5);
     }

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.Scanner;
 
 public class FigurasG {
     /** Declaración de Atributos*/
@@ -117,7 +118,8 @@ public class FigurasG {
 
     // Validaciones
     public static boolean validarTriangulo(float l1, float l2, float l3) {
-        // Verificar desigualdad triangular
+        // Static: pertenece a la clase y no a los objetos
+        // por eso se puede llamar sin crear un objeto sino a la clase directamente
         if (l1 + l2 > l3 && l1 + l3 > l2 && l2 + l3 > l1) {
             return true;
         } else {
@@ -134,5 +136,19 @@ public class FigurasG {
         }
     }
 
+    public static float validarPositivo(Scanner sc, String mensaje) {
+        // Como argumentos recibe el Scanner y el mensaje a mostrar
+        // el scanner se pasa como argumento para no crear otro Scanner en cada llamada
+
+        float numero;
+        do {
+            System.out.println(mensaje);
+            numero = Float.parseFloat(sc.nextLine());
+            if (numero <= 0) {
+                System.out.println("El número debe ser positivo. Intente de nuevo.");
+            }
+        } while (numero <= 0);
+        return numero;
+    }
 
 }
