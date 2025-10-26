@@ -94,39 +94,54 @@ public class AppStore {
     }
 
     public int comprarLicencias(int cantidad) {
-        if (cantidad <= getLicenciasDisponibles()) {
-            setLicenciasDisponibles(getLicenciasVendidas()-cantidad);
-            setLicenciasVendidas(getLicenciasVendidas() + cantidad);
-            return cantidad;
-        } else {
-            int compradas = getLicenciasDisponibles();
-            setLicenciasVendidas(getLicenciasVendidas() + getLicenciasDisponibles());
-            setLicenciasDisponibles(0);
-            return compradas;
-        }
+        setLicenciasDisponibles(getLicenciasDisponibles() + cantidad);
+        return cantidad;
     }
 
+
     public double venderLicencias(int cantidad) {
-        if (cantidad <= getLicenciasVendidas()) {
-            setLicenciasVendidas(getLicenciasVendidas() - cantidad);
-            setLicenciasDisponibles(getLicenciasDisponibles() + cantidad);
+        int cantidadVendida;
+        if (cantidad <= getLicenciasDisponibles()) {
+            cantidadVendida = cantidad;
         } else {
-            int vendidas = getLicenciasVendidas();
-            setLicenciasDisponibles(getLicenciasDisponibles() + getLicenciasVendidas());
-            setLicenciasVendidas(0);
+            cantidadVendida = getLicenciasDisponibles();
         }
 
-        // Llamar a calcularDescuento y aplicar al precio
-        // Se usa getLicenciasVendidas() para obtener la cantidad vendida
-        // igual que getPrecioPesos() para obtener el precio por licencia
-        double descuento = calcularDescuento(getLicenciasVendidas());
-        double precioTotal = getPrecioPesos() * getLicenciasVendidas();
+        double descuento = calcularDescuento(cantidadVendida);
+        double precioTotal = getPrecioPesos() * cantidadVendida;
         double precioFinal = precioTotal * (1 - descuento);
+
+        setLicenciasDisponibles(getLicenciasDisponibles() - cantidadVendida);
+        setLicenciasVendidas(getLicenciasVendidas() + cantidadVendida);
+
         return precioFinal;
     }
 
-    public String darJuegoMenosVendido(){
 
+    public static String darJuegoMenosVendido(AppStore... juegos) {
+        // Se usa static porque no depende de un objeto en particular
+        // sino que opera sobre un conjunto de objetos pasados como parametros
 
-        return "";
+        // AppStore... juegos es una sintaxis de varargs que permite pasar
+        // los varargs son metodos que pueden recibir un número variable de argumentos del mismo tipo.
+        // una cantidad variable de objetos AppStore como un array
+        // cada punto representa un juego en la AppStore
+        if (juegos == null || juegos.length == 0) {
+            return "NINGUNO";
+        }
+
+        AppStore menosVendido = juegos[0];
+        for (AppStore juego : juegos) {
+        // Recorre cada juego en el array juegos
+        // va de juegos[0] hasta juegos[n]
+            if (juego.getLicenciasVendidas() < menosVendido.getLicenciasVendidas()) {
+                menosVendido = juego;
+            }
+        }
+
+        return menosVendido.getNombre();
     }
+
+
+}
+
