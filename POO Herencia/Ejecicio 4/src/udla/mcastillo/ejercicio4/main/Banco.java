@@ -6,8 +6,9 @@ clientes, y para ello las clasifica en dos tipos: cuentas de ahorros y cuentas c
 
 Todas las cuentas del banco tienen los siguientes datos:
 - Número de cuenta (dato numérico).
-- Nombre del cliente (cadena).
+- Nombre del cliente (cadena). (Esta debe de ser otra clase, pues un cliente puede tener varias cuentas). (Composición).
 - Saldo (dato numérico con fracción decimal).
+- Tipo de inversion (enum).
 
 Con cada cuenta se pueden realizar las siguientes operaciones:
 - Consultar datos: a través de sus propiedades.
