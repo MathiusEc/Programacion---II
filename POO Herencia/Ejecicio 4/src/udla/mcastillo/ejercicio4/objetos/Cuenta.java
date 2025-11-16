@@ -42,8 +42,26 @@ public class Cuenta {
     }
 
     /** Métodos del Programador */
+    public void consultarDatos(){
+        System.out.println("Número de Cuenta: " + getNumeroCuenta());
+        System.out.println("Saldo: " + getSaldo());
+        System.out.println("Tipo de Inversión: " + getTipoInversion());
+    }
 
+    public double depositar(double monto){
+        setSaldo(getSaldo() + monto);
+        return getSaldo();
+    }
 
+    public double retirar(double monto){
+        if(monto > getSaldo()){
+            System.out.println("Fondos insuficientes");
+            return getSaldo();
+        } else {
+            setSaldo(getSaldo() - monto);
+            return getSaldo();
+        }
+    }
 
 
 }

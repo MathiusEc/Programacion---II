@@ -27,4 +27,14 @@ public class CtaAhorro extends Cuenta{
     }
 
     /** Métodos del Programador */
+    public double calcularInteres(){
+        double interes = getSaldo() * tasaInteres / 100;
+        setSaldo(getSaldo() + interes);
+        return interes;
+    }
+
+    public void consultarInteres(){
+        super.consultarDatos();
+        System.out.println("Tasa de Interés: " + getTasaInteres() + "%");
+    }
 }
