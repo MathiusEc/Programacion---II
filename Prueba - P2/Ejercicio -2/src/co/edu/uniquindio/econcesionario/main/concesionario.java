@@ -296,6 +296,17 @@ public class concesionario {
                 break;
             }
         }
+
+        if (!eliminado) {
+            for (int i = 0; i < listavehiculosUsados.size(); i++) {
+                if (listavehiculosUsados.get(i).getPlaca().equalsIgnoreCase(placaEliminar)) {
+                    listavehiculosUsados.remove(i);
+                    eliminado = true;
+                    System.out.println("Vehículo Usado con placa " + placaEliminar + " eliminado exitosamente.");
+                    break;
+                }
+            }
+        }
     }
 
 
