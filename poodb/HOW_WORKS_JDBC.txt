@@ -1,0 +1,140 @@
+========================================
+  BASIC GUIDE: HOW JDBC AND MYSQL WORK
+========================================
+
+1. WHAT IS JDBC?
+-----------------
+JDBC (Java Database Connectivity) is a Java API that allows your Java program
+to communicate with databases (like MySQL, PostgreSQL, Oracle, etc.).
+
+Think of JDBC as a "translator" that converts your Java code into commands that
+the database can understand.
+
+
+2. WHAT IS THE MYSQL CONNECTOR?
+-------------------------------
+The MySQL Connector (also called MySQL Connector/J) is a DRIVER or controller.
+
+It's a JAR library that you must add to your project so that JDBC can "talk"
+specifically with MySQL.
+
+Without this driver, Java wouldn't know how to connect to MySQL.
+
+Download: https://dev.mysql.com/downloads/connector/j/
+
+
+3. HOW DOES THE CONNECTION WORK?
+-------------------------------
+The process is like this:
+
+   [Your Java Program]
+         ↓
+   [JDBC API]
+         ↓
+   [MySQL Connector/J Driver]
+         ↓
+   [MySQL Server at localhost:3306]
+         ↓
+   [Database: ejemplojdbc]
+
+
+4. MAIN JDBC COMPONENTS
+-----------------------------------
+
+a) DriverManager
+   - Class that manages database drivers
+   - Establishes the initial connection with MySQL
+   - Main method: DriverManager.getConnection(url, user, password)
+
+b) Connection
+   - Represents the active connection with the database
+   - Used to create Statements and PreparedStatements
+   - Example: Connection conn = DriverManager.getConnection(...)
+
+c) PreparedStatement
+   - Used to execute SQL queries safely
+   - Prevents SQL injection attacks
+   - Allows using parameters (?) in queries
+   - Example: PreparedStatement ps = conn.prepareStatement("INSERT INTO...")
+
+d) ResultSet
+   - Used to read the results of SELECT queries
+   - Not in this example, but used to retrieve data from the DB
+
+
+5. MYSQL CONNECTION URL
+---------------------------
+Format: jdbc:mysql://host:port/database_name
+
+Example: jdbc:mysql://localhost:3306/ejemplojdbc
+
+Explanation:
+- jdbc:mysql:// → JDBC protocol for MySQL
+- localhost → The MySQL server is on your local computer
+- 3306 → MySQL's default port
+- ejemplojdbc → Your database name
+
+
+6. PROGRAM FLOW (Main.java)
+----------------------------------
+1. An instance of Utilidades is created
+2. A Cliente object with data is created
+3. getConnection() is called to connect to MySQL
+4. If the connection is successful (conn != null):
+   - insertarDatos() is called to save the client
+   - PreparedStatement executes the INSERT
+5. The data is saved in the 'cliente' table in MySQL
+
+
+7. STEPS TO USE JDBC IN YOUR PROJECT
+---------------------------------------
+1. Download the MySQL Connector/J (.jar)
+2. Add the .jar to your project libraries
+3. Import the necessary classes:
+   - import java.sql.Connection;
+   - import java.sql.DriverManager;
+   - import java.sql.PreparedStatement;
+4. Write the code to connect and execute queries
+
+
+8. DATABASE STRUCTURE
+----------------------------------
+In MySQL you must have this table created:
+
+CREATE DATABASE ejemplojdbc;
+USE ejemplojdbc;
+
+CREATE TABLE cliente (
+    idcliente INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100),
+    apellido VARCHAR(100),
+    correo VARCHAR(150),
+    identificacion VARCHAR(50)
+);
+
+
+9. COMMON ERRORS
+------------------
+- "No suitable driver found": You didn't add the MySQL Connector to the project
+- "Access denied": Incorrect username or password
+- "Unknown database": The 'ejemplojdbc' database doesn't exist
+- "Communications link failure": The MySQL server is not running
+
+
+10. ADVANTAGES OF USING PreparedStatement
+---------------------------------------
+- Security: Prevents SQL injection
+- Performance: MySQL can optimize the query
+- Readability: Cleaner code with parameters (?)
+- Reusability: You can execute the same query with different values
+
+
+========================================
+IMPORTANT!
+========================================
+For this project to work you need:
+1. Have MySQL installed and running
+2. Create the 'ejemplojdbc' database
+3. Create the 'cliente' table
+4. Add the MySQL Connector/J to your project
+5. Configure the correct username and password in Utilidades.java
